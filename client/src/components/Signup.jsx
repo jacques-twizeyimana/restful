@@ -43,14 +43,9 @@ export default function Signup() {
     }
   }
   return (
-    <div className="bg-primary-400 min-h-screen py-10">
-      <div className="w-[500px] bg-white py-10 mx-auto rounded-lg">
-        <img
-          src="/img/logo.png"
-          alt="rra logo"
-          className="w-64 block mx-auto"
-        />
-        <form className="mt-12 px-10" onSubmit={handleSubmit}>
+    <div className="bg-white min-h-screen py-10">
+      <div className="w-[500px] bg-white py-10  border-t shadow-lg mx-auto rounded-lg">
+        <form className="mt-6 px-10" onSubmit={handleSubmit}>
           <div className="mb-10 flex flex-col gap-4">
             <h1 className="text-3xl font-bold text-black">Create account</h1>
             <p className="flex gap-1 text-base">
