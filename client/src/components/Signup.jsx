@@ -39,7 +39,8 @@ export default function Signup() {
         toast.error(user.message);
       }
     } catch (error) {
-      toast.error(error.response.data.message);
+      console.log(error.response.data);
+      toast.error(error.response.data.message || error.response.data);
     }
   }
   return (

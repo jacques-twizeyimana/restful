@@ -37,7 +37,7 @@ export default function LinkToOwner() {
         toast.success("Owner linked successfully", { duration: 3000 });
         navigate("/dashboard/vehicles");
       } catch (error) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message || error.response.data);
       }
     }
   };

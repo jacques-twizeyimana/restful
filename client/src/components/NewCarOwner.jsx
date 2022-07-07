@@ -28,7 +28,7 @@ export default function NewCarOwner() {
       toast.success("Owner created successfully", { duration: 3000 });
       navigate("/dashboard/owners");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message || error.response.data);
     }
   }
 

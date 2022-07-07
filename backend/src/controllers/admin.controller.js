@@ -6,7 +6,11 @@ import Joi from 'joi';
 export const signup = async (req, res) => {
     const { error } = validateUser(req.body);
     if (error) {
-        return res.status(400).send(error.details[0].message);
+      return res.status(400).send({
+        success: false,
+        message: error.details[0].message,
+      });
+      // return res.status(400).send(error.details[0].message);
     }
 
     const { names, email, phone, nationalId, password } = req.body;
