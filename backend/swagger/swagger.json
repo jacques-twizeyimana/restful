@@ -2,8 +2,8 @@
   "swaggerDefinition": {
     "swagger": "2.0",
     "info": {
-      "title": "voting-app-api",
-      "description": "voting-app-api API Documentation",
+      "title": "Vehicle mis",
+      "description": "Vehicle mis API Documentation",
       "termsOfService": "http://swagger.io/terms/",
       "contact": {
         "name": "API Support",
@@ -16,7 +16,7 @@
       },
       "version": "1.0.0"
     },
-    "host": "localhost:5000",
+    "host": "localhost:5230",
     "basePath": "/",
     "schemes": [
       "http"
@@ -771,11 +771,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           }
         }
       },
@@ -825,11 +825,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           }
         }
       },
@@ -876,11 +876,11 @@
           },
           "updatedAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           },
           "createdAt": {
             "type": "string",
-            "example": "7/6/2022, 11:33:41 AM"
+            "example": "7/6/2022, 5:32:40 PM"
           }
         }
       }
