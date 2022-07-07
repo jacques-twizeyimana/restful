@@ -24,14 +24,17 @@ export default function NewVehicle() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const user = await createVehicle(values);
+    try {
+      const user = await createVehicle(values);
 
-    if (user.data) {
-      toast.success("Vehicle created successfully", { duration: 3000 });
-
-      navigate("/vehicles");
-    } else {
-      toast.error(user.message);
+      if (user.data) {
+        toast.success("Vehicle created successfully", { duration: 3000 });
+        navigate("/dashboard/vehicles");
+      } else {
+        toast.error(user.message);
+      }
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
   }
 
@@ -55,7 +58,7 @@ export default function NewVehicle() {
             </label>
             <input
               onChange={handleChange}
-              name="nchasisNumberames"
+              name="chasisNumber"
               id="chasisNumber"
               placeholder="Enter Chasis Number"
               required
@@ -70,6 +73,7 @@ export default function NewVehicle() {
               Manufacture Company
             </label>
             <input
+              onChange={handleChange}
               name="manufacturer"
               id="manufacturer"
               placeholder="Enter Manufacture Company"
@@ -103,8 +107,6 @@ export default function NewVehicle() {
             <input
               onChange={handleChange}
               type="number"
-              max="16"
-              min="16"
               required
               name="price"
               id="nationa_id"

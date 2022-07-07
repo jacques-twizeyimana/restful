@@ -58,7 +58,7 @@ async function createOwner(ownerDto) {
 }
 
 async function createVehicle(vehicleDto) {
-  return await axios.post(`${BASE_URL}/vehicle`, vehicleDto, {
+  return await axios.post(`${BASE_URL}/vehicles`, vehicleDto, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
@@ -74,11 +74,23 @@ async function getOwners() {
 }
 
 async function getVehicles() {
-  return await axios.get(`${BASE_URL}/vehicle`, {
+  return await axios.get(`${BASE_URL}/vehicles`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
     },
   });
+}
+
+async function updateVehicle(vehicleDto) {
+  return await axios.put(
+    `${BASE_URL}/vehicles/${vehicleDto.vehicleId}`,
+    vehicleDto,
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    }
+  );
 }
 
 //get current user profile
@@ -91,4 +103,5 @@ export {
   getOwners,
   createVehicle,
   createOwner,
+  updateVehicle,
 };

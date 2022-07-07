@@ -21,16 +21,17 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const user = await login(values);
+      const resp = await login(values);
+      console.log(resp.data);
 
-      if (user.data.token) {
-        localStorage.setItem("token", user.data.token);
+      if (resp.data.data.token) {
+        localStorage.setItem("token", resp.data.data.token);
         toast.success("User logged in successfully", { duration: 3000 });
-        const userData = await userProfile();
-        localStorage.setItem("user", JSON.stringify(userData.data));
-        navigate("/owners");
+
+        localStorage.setItem("user", JSON.stringify(resp.data.data.user));
+        navigate("/dashboard/owners");
       } else {
-        toast.error(user.message);
+        toast.error(resp.message);
       }
     } catch (error) {
       toast.error(error.response.data.message);

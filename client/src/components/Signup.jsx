@@ -22,6 +22,7 @@ export default function Signup() {
     event.preventDefault();
     try {
       const user = await register(values);
+      console.log(user);
 
       if (user.data) {
         toast.success("User created successfully", { duration: 3000 });
@@ -113,8 +114,6 @@ export default function Signup() {
               </label>
               <input
                 type="number"
-                max="16"
-                min="16"
                 required
                 onChange={handleChange}
                 name="nationalId"

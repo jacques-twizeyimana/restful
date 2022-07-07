@@ -23,20 +23,12 @@ export default function NewCarOwner() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const user = await createOwner(values);
-
-    if (user.data) {
+    try {
+      await createOwner(values);
       toast.success("Owner created successfully", { duration: 3000 });
-      setValues({
-        address: "",
-        names: "",
-        phone: "",
-        nationalId: "",
-      });
-
-      navigate("/owners");
-    } else {
-      toast.error(user.message);
+      navigate("/dashboard/owners");
+    } catch (error) {
+      toast.error(error.response.data.message);
     }
   }
 
@@ -62,6 +54,7 @@ export default function NewCarOwner() {
               name="names"
               id="names"
               placeholder="John Doe"
+              onChange={handleChange}
               required
               className=" rounded-xl border border-[#DEE2E6]  text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
@@ -76,6 +69,7 @@ export default function NewCarOwner() {
             <input
               name="address"
               id="address"
+              onChange={handleChange}
               placeholder="Kigali"
               className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
@@ -89,10 +83,9 @@ export default function NewCarOwner() {
             </label>
             <input
               type="number"
-              max="16"
-              min="16"
               required
               name="nationalId"
+              onChange={handleChange}
               id="nationa_id"
               placeholder="1200456783452375"
               className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
@@ -117,7 +110,7 @@ export default function NewCarOwner() {
           </div>
           <button
             type="submit"
-            className="rounded-xl font-semibold flex justify-center items-center mt-2 w-full text-white bg-primary p-3 "
+            className="rounded-xl font-semibold flex justify-center items-center mt-2 w-full text-white bg-primary-600 p-3 "
           >
             Register car owner
           </button>

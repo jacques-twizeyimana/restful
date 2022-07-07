@@ -5,16 +5,14 @@ import { getVehicles } from "../services/auth.service";
 export default function Vehicles() {
   const [data, setData] = useState([]);
 
-  useEffect(()=>{
-    async function fetchData(){
+  useEffect(() => {
+    async function fetchData() {
       const owners = await getVehicles();
-      setData(owners.data);
+      setData(owners.data.data);
     }
 
     fetchData();
-  },[])
-
-
+  }, []);
 
   const navigate = useNavigate();
   return (
@@ -24,9 +22,9 @@ export default function Vehicles() {
         <div className="bg-white p-8 rounded-md w-full">
           <div className=" flex items-center justify-end pb-6">
             <div className="lg:ml-40 ml-10 space-x-8">
-              <Link to="new-vehicle">
+              <Link to="/dashboard/new-vehicle">
                 <button
-                  onClick={() => navigate("/new-vehicle")}
+                  onClick={() => navigate("/dashboard/new-vehicle")}
                   className="bg-primary-600 px-5 py-2 rounded-xl text-white font-semibold tracking-wide cursor-pointer"
                 >
                   Register vehicle
@@ -66,99 +64,57 @@ export default function Vehicles() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div className="flex items-center">
-                          <div className="ml-3">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              AN12334
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          Toyota
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          2014
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          13 Million
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          RAC234M
-                        </p>
-                      </td>
-
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          Toyota RAVA 4
-                        </p>
-                      </td>
-
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          Kalisa Emmanuel
-                        </p>
-                      </td>
-                    </tr>
-
-                    {data.map(vh => (
+                    {data.map((vh) => (
                       <tr key={vh._id}>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <div className="flex items-center">
-                          <div className="ml-3">
-                            <p className="text-gray-900 whitespace-no-wrap">
-                              {vh.chasisNumber}
-                            </p>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <div className="flex items-center">
+                            <div className="ml-3">
+                              <p className="text-gray-900 whitespace-no-wrap">
+                                {vh.chasisNumber}
+                              </p>
+                            </div>
                           </div>
-                        </div>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {vh.manufacturer}
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {vh.manufactureYear}
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                         {vh.price}
-                        </p>
-                      </td>
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {vh.plateNumber}
-                        </p>
-                      </td>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {vh.manufacturer}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {vh.manufactureYear}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {vh.price}
+                          </p>
+                        </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {vh.plateNumber}
+                          </p>
+                        </td>
 
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {vh.model}
-                        </p>
-                      </td>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {vh.model}
+                          </p>
+                        </td>
 
-                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          <Link
-                            to={"/link-vehicle"}
-                            className="tex-sm text-primary-600 underline"
-                          >
-                            Link owner
-                          </Link>
-                        </p>
-                      </td>
-                    </tr>
+                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {!vh.ownerId && (
+                              <Link
+                                to={"/dashboard/link-vehicle?id=" + vh._id}
+                                className="tex-sm text-primary-600 underline"
+                              >
+                                Link owner
+                              </Link>
+                            )}
+                          </p>
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
                 </table>
