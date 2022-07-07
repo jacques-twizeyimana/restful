@@ -1,20 +1,19 @@
-import React, {useState} from "react";
-import toast from "react-hot-toast";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import PopupMolecule from "./Popup";
-import { createVehicle } from "../services/auth.service";
+import toast from "react-hot-toast";
+import { createOwner } from "../services/auth.service";
 
-export default function NewVehicle() {
+
+export default function NewCarOwner() {
   const [showPopup] = React.useState(true);
   const navigate = useNavigate();
 
   const [values, setValues] = React.useState({
-    chasisNumber: "",
-    manufacturer: "",
-    manufactureYear: 0,
-    model: "",
-    price: 0,
-    plateNumber: ""
+    address: "",
+    names: "",
+    phone: "",
+    nationalId: "",
   });
 
   function handleChange(event) {
@@ -24,12 +23,18 @@ export default function NewVehicle() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const user = await createVehicle(values);
+    const user = await createOwner(values);
 
     if (user.data) {
-      toast.success("Vehicle created successfully", { duration: 3000 });
+      toast.success("Owner created successfully", { duration: 3000 });
+      setValues({
+        address: "",
+        names: "",
+        phone: "",
+        nationalId: "",
+      });
 
-      navigate("/vehicles");
+      navigate("/owners");
     } else {
       toast.error(user.message);
     }
@@ -38,7 +43,7 @@ export default function NewVehicle() {
   return (
     <PopupMolecule
       open={showPopup}
-      title={"Register New vehicle"}
+      title={"Register New Car owner"}
       onClose={() => navigate(-1)}
     >
       <div className="px-[10px]">
@@ -48,67 +53,48 @@ export default function NewVehicle() {
         >
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="chasisNumber"
+              htmlFor="names"
               className="block text-sm font-semibold text-gray-900"
             >
-              Chasis Number
+              Owner Names
             </label>
             <input
-              onChange={handleChange}
-              name="nchasisNumberames"
-              id="chasisNumber"
-              placeholder="Enter Chasis Number"
+              name="names"
+              id="names"
+              placeholder="John Doe"
               required
               className=" rounded-xl border border-[#DEE2E6]  text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
           </div>
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="manufacturer"
+              htmlFor="email"
               className="block text-sm font-semibold text-gray-900"
             >
-              Manufacture Company
+              owner address
             </label>
             <input
-              name="manufacturer"
-              id="manufacturer"
-              placeholder="Enter Manufacture Company"
+              name="address"
+              id="address"
+              placeholder="Kigali"
               className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
           </div>
           <div className="flex flex-col gap-2">
             <label
-              htmlFor="phone"
+              htmlFor="nationalId"
               className="block text-sm font-semibold text-gray-900"
             >
-              Manufacture year
+              Owner national Id
             </label>
             <input
-              onChange={handleChange}
-              name="manufactureYear"
-              id="phone"
-              type="number"
-              placeholder="enter manufacture year"
-              required
-              className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="price"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Vehicle Price
-            </label>
-            <input
-              onChange={handleChange}
               type="number"
               max="16"
               min="16"
               required
-              name="price"
+              name="nationalId"
               id="nationa_id"
-              placeholder="enter manufacture price"
+              placeholder="1200456783452375"
               className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
           </div>
@@ -117,37 +103,23 @@ export default function NewVehicle() {
               htmlFor="phone"
               className="block text-sm font-semibold text-gray-900"
             >
-              Plate no
+              Owner phone number
             </label>
             <input
               onChange={handleChange}
+              type="tel"
+              name="phone"
+              id="phone"
+              placeholder="0786090674"
               required
-              name="plateNumber"
-              id="password"
-              placeholder="Enter plate number"
-              className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
-            />
-          </div>
-          <div className="flex flex-col gap-2">
-            <label
-              htmlFor="model"
-              className="block text-sm font-semibold text-gray-900"
-            >
-              Model Name
-            </label>
-            <input
-              onChange={handleChange}
-              required
-              name="model"
-              placeholder="Enter model name "
               className=" rounded-xl border border-gray-300 text-gray-900 sm:text-sm outline-none focus:ring-blue-500 block w-[346px] p-2.5"
             />
           </div>
           <button
             type="submit"
-            className="rounded-xl font-semibold flex justify-center items-center mt-2 w-full text-white bg-primary-600 p-3 "
+            className="rounded-xl font-semibold flex justify-center items-center mt-2 w-full text-white bg-primary p-3 "
           >
-            Register vehicle
+            Register car owner
           </button>
         </form>
       </div>
