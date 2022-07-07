@@ -25,12 +25,15 @@ export const registerVehicle = async (req, res) => {
         ownerId
     } = req.body;
 
-    //check if owner exists
-    const owner = await Admin.findById(ownerId);
-    if (!owner) return res.status(400).send({
-        success: false,
-        message: "Owner does not exist"
-    });
+    if (ownerId) {
+      //check if owner exists
+      const owner = await Admin.findById(ownerId);
+      if (!owner)
+        return res.status(400).send({
+          success: false,
+          message: "Owner does not exist",
+        });
+    }
 
     const vehicle = new Vehicle({
         chasisNumber,
